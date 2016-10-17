@@ -900,7 +900,7 @@ char *janus_sdp_merge(void *ice_handle, janus_sdp *anon) {
 				(m->direction == JANUS_SDP_DEFAULT || m->direction == JANUS_SDP_SENDRECV || m->direction == JANUS_SDP_SENDONLY)) {
 			a = janus_sdp_attribute_create("ssrc", "%"SCNu32" cname:janusaudio", stream->audio_ssrc);
 			m->attributes = g_list_append(m->attributes, a);
-			a = janus_sdp_attribute_create("ssrc", "%"SCNu32" msid:janus janusa0", stream->audio_ssrc);
+			a = janus_sdp_attribute_create("ssrc", "%"SCNu32" msid:%s janusa0", stream->audio_ssrc, anon->s_name);
 			m->attributes = g_list_append(m->attributes, a);
 			a = janus_sdp_attribute_create("ssrc", "%"SCNu32" mslabel:janus", stream->audio_ssrc);
 			m->attributes = g_list_append(m->attributes, a);
@@ -910,7 +910,7 @@ char *janus_sdp_merge(void *ice_handle, janus_sdp *anon) {
 				(m->direction == JANUS_SDP_DEFAULT || m->direction == JANUS_SDP_SENDRECV || m->direction == JANUS_SDP_SENDONLY)) {
 			a = janus_sdp_attribute_create("ssrc", "%"SCNu32" cname:janusvideo", stream->video_ssrc);
 			m->attributes = g_list_append(m->attributes, a);
-			a = janus_sdp_attribute_create("ssrc", "%"SCNu32" msid:janus janusv0", stream->video_ssrc);
+			a = janus_sdp_attribute_create("ssrc", "%"SCNu32" msid:%s janusv0", stream->video_ssrc, anon->s_name);
 			m->attributes = g_list_append(m->attributes, a);
 			a = janus_sdp_attribute_create("ssrc", "%"SCNu32" mslabel:janus", stream->video_ssrc);
 			m->attributes = g_list_append(m->attributes, a);

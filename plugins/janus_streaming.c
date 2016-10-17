@@ -2092,7 +2092,11 @@ static void *janus_streaming_handler(void *data) {
 				"v=0\r\no=%s %"SCNu64" %"SCNu64" IN IP4 127.0.0.1\r\n",
 					"-", sessid, version);
 			g_strlcat(sdptemp, buffer, 2048);
-			g_strlcat(sdptemp, "s=Streaming Test\r\nt=0 0\r\n", 2048);
+			if(id_value) {
+				g_snprintf(buffer, 2048,
+				"s=Stream-%"SCNu64"\r\nt=0 0\r\n",id_value);
+				g_strlcat(sdptemp, buffer, 2048);
+			}
 			if(mp->codecs.audio_pt >= 0) {
 				/* Add audio line */
 				g_snprintf(buffer, 512,
